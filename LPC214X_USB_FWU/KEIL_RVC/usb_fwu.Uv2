@@ -1,0 +1,110 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+Target (usb_fwu), 0x0004 // Tools: 'ARM-ADS'
+
+Group (FWU Files)
+Group (Sys)
+
+File 1,1,<..\usb_fwu\fwu_utils.c><fwu_utils.c> 0x447D65B2 
+File 1,1,<..\usb_fwu\fwu.c><fwu.c> 0x447D671C 
+File 1,1,<..\usb_fwu\fwu_init.c><fwu_init.c> 0x447D6503 
+File 1,1,<..\usb_fwu\fwu_int.c><fwu_int.c> 0x4470AFA7 
+File 1,1,<..\usb_fwu\fwu_queue.c><fwu_queue.c> 0x4470A01A 
+File 1,1,<..\usb_fwu\fwu_usb_descr.c><fwu_usb_descr.c> 0x44774167 
+File 1,1,<..\usb_fwu\fwu_usb_ep.c><fwu_usb_ep.c> 0x447D6554 
+File 1,1,<..\usb_fwu\fwu_usb_hw.c><fwu_usb_hw.c> 0x447D63AF 
+File 1,1,<..\usb_fwu\fwu_usb_req.c><fwu_usb_req.c> 0x4470AD63 
+File 1,1,<..\usb_fwu\fwu_usb_thumb.c><fwu_usb_thumb.c> 0x4477EEE2 
+File 1,2,<..\usb_fwu\fwu_asm_armcc.s><fwu_asm_armcc.s> 0x447D6466 
+File 2,2,<.\fwu_startup_keil_rvc.s><fwu_startup_keil_rvc.s> 0x447846F3 
+File 2,2,<.\fwu_startup_hardware.s><fwu_startup_hardware.s> 0x44784449 
+
+
+Options 1,0,0  // Target 'usb_fwu'
+ Device (LPC2146)
+ Vendor (Philips)
+ Cpu (IRAM(0x40000000-0x40007FFF) IROM(0-0x3FFFF) CLOCK(12000000) CPUTYPE(ARM7TDMI))
+ FlashUt (LPC210x_ISP.EXE ("#H" ^X $D COM1: 38400 1))
+ StupF ("STARTUP\Philips\Startup.s" ("Philips LPC2100 Startup Code"))
+ FlashDR (UL2ARM(-U40296420 -O7 -S0 -C0 -FO7 -FD40000000 -FC800 -FN1 -FF0LPC_IAP2_256 -FS00 -FL040000))
+ DevID (3934)
+ Rgf (LPC214X.H)
+ Mem ()
+ C ()
+ A ()
+ RL ()
+ OH ()
+ DBC_IFX ()
+ DBC_CMS ()
+ DBC_AMS ()
+ DBC_LMS ()
+ UseEnv=0
+ EnvBin ()
+ EnvInc ()
+ EnvLib ()
+ EnvReg (ÿPhilips\)
+ OrgReg (ÿPhilips\)
+ TgStat=16
+ OutDir (.\OBJ\)
+ OutName (usb_fwu)
+ GenApp=1
+ GenLib=0
+ GenHex=1
+ Debug=1
+ Browse=1
+ LstDir (.\LST\)
+ HexSel=1
+ MG32K=0
+ TGMORE=0
+ RunUsr 0 0 <>
+ RunUsr 1 0 <>
+ BrunUsr 0 0 <>
+ BrunUsr 1 0 <>
+ SVCSID <>
+ GLFLAGS=1790
+ ADSFLGA { 243,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ACPUTYP (ARM7TDMI)
+ ADSTFLGA { 0,12,0,0,99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ OCMADSOCM { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ OCMADSIRAM { 0,0,0,0,64,0,128,0,0 }
+ OCMADSIROM { 1,0,0,0,0,0,0,4,0 }
+ OCMADSXRAM { 0,0,0,0,0,0,0,0,0 }
+ OCR_RVCT { 1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,251,1,0,0,1,252,1,0,0,0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,0,128,0,0,0,0,0,0,0,0,0,0,0 }
+ RV_STAVEC ()
+ ADSCCFLG { 13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ADSCMISC ()
+ ADSCDEFN ()
+ ADSCUDEF ()
+ ADSCINCD ()
+ ADSASFLG { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ADSAMISC ()
+ ADSADEFN ()
+ ADSAUDEF ()
+ ADSAINCD ()
+ PropFld { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=1
+ AlwaysBuild=0
+ GenAsm=0
+ AsmAsm=0
+ PublicsOnly=0
+ StopCode=3
+ CustArgs ()
+ LibMods ()
+ ADSLDFG { 24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ADSLDTA ()
+ ADSLDDA ()
+ ADSLDSC ()
+ ADSLDIB ()
+ ADSLDIC ()
+ ADSLDMC (--scatter fwu_lpc2146_flash_keil.scat --entry  reset\~)
+ ADSLDIF ()
+ ADSLDDW ()
+  OPTDL (SARM.DLL)(-cLPC2100)(DARMP.DLL)(-pLPC2146)(SARM.DLL)()(TARMP.DLL)(-pLPC2146)
+  OPTDBG 48125,0,()()()()()()()()()() (BIN\UL2ARM.DLL)()()()
+ FLASH1 { 2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ FLASH2 (BIN\UL2ARM.DLL)
+ FLASH3 ("LPC210x_ISP.EXE" ("#H" ^X $D COM1: 38400 1))
+ FLASH4 ()
+EndOpt
+

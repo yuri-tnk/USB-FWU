@@ -1,0 +1,66 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution version="1" Name="usb_fwu" >
+  <project Name="usb_fwu" >
+    <configuration project_directory="" link_include_startup_code="No" project_type="Executable" Name="Common" />
+    <folder Name="Source Files" >
+      <configuration filter="c;cpp;cxx;cc;h;s;asm;inc;s" Name="Common" />
+      <file file_name="startup_hardware_init.s" Name="startup_hardware_init.s" />
+      <file file_name="../usb_fwu/fwu_utils.c" Name="fwu_utils.c" >
+        <configuration arm_instruction_set="ARM" Name="ARM Flash Debug" />
+      </file>
+      <file file_name="../usb_fwu/fwu.c" Name="fwu.c" >
+        <configuration arm_instruction_set="ARM" Name="ARM Flash Debug" />
+      </file>
+      <file file_name="../usb_fwu/fwu_int.c" Name="fwu_int.c" >
+        <configuration arm_instruction_set="ARM" Name="ARM Flash Debug" />
+      </file>
+      <file file_name="../usb_fwu/fwu_queue.c" Name="fwu_queue.c" >
+        <configuration arm_instruction_set="ARM" Name="ARM Flash Debug" />
+      </file>
+      <file file_name="../usb_fwu/fwu_usb_descr.c" Name="fwu_usb_descr.c" />
+      <file file_name="../usb_fwu/fwu_usb_ep.c" Name="fwu_usb_ep.c" />
+      <file file_name="../usb_fwu/fwu_usb_hw.c" Name="fwu_usb_hw.c" >
+        <configuration arm_instruction_set="ARM" Name="ARM Flash Debug" />
+      </file>
+      <file file_name="../usb_fwu/fwu_usb_req.c" Name="fwu_usb_req.c" />
+      <file file_name="../usb_fwu/fwu_asm.s" Name="fwu_asm.s" />
+      <file file_name="../usb_fwu/fwu_init.c" Name="fwu_init.c" >
+        <configuration arm_instruction_set="THUMB" Name="ARM Flash Debug" />
+      </file>
+      <file file_name="../usb_fwu/fwu_usb_thumb.c" Name="fwu_usb_thumb.c" >
+        <configuration arm_instruction_set="THUMB" Name="ARM Flash Debug" />
+      </file>
+    </folder>
+    <configuration target_reset_script="LPC210X_ResetWithSRAMVectorsAtZero()" Name="RAM" />
+    <configuration arm_target_flash_loader_file_path="$(StudioDir)/targets/Philips_LPC210X/Release/Loader.exe" target_reset_script="LPC210X_ResetWithBootLoaderFLASHVectorsAtZero()" Name="Flash" />
+    <folder Name="System Files" >
+      <configuration filter="" Name="Common" />
+      <file file_name="$(StudioDir)/targets/Philips_LPC210X/Philips_LPC210X_Target.js" Name="Philips_LPC210X_Target.js" >
+        <configuration Name="Common" file_type="Reset Script" />
+      </file>
+      <file file_name="fwu_Philips_LPC2146_MemoryMap.xml" Name="fwu_Philips_LPC2146_MemoryMap.xml" />
+      <file file_name="fwu_flash_placement.xml" Name="fwu_flash_placement.xml" />
+      <file file_name="fwu_sram_placement.xml" Name="fwu_sram_placement.xml" />
+      <file file_name="fwu_startup_gcc.s" Name="fwu_startup_gcc.s" />
+    </folder>
+    <configuration c_enforce_ansi_checking="Yes" arm_interwork="No" arm_long_calls="No" c_additional_options="-Wall" linker_post_build_command="" linker_additional_options="-M=flash_release.map" Name="ARM Flash Release" linker_output_format="hex" />
+    <configuration c_enforce_ansi_checking="Yes" arm_target_loader_parameter="12000000" arm_interwork="Yes" arm_long_calls="No" link_include_standard_libraries="Yes" gcc_optimization_level="Optimize For Size" arm_instruction_set="ARM" c_additional_options="-Wall" linker_additional_options="" default_code_section=".text" Name="ARM Flash Debug" />
+    <configuration c_enforce_ansi_checking="Yes" arm_interwork="No" build_quietly="Yes" gcc_optimization_level="Level 1" c_additional_options="-Wall" linker_additional_options="-M=D:\\girad\\BabySense\\bs\\map_ram_db.txt " default_code_section=".fast" Name="ARM RAM Debug" />
+    <configuration c_enforce_ansi_checking="Yes" arm_interwork="No" arm_long_calls="No" link_include_standard_libraries="Yes" c_additional_options="-Wall" linker_additional_options="-M=D:\\girad\\BabySense\\bs\\map_ram_rel.txt " Name="ARM RAM Release" />
+    <configuration macros="map_file = $(ProjectName)" Name="ARM" />
+  </project>
+  <configuration c_preprocessor_definitions="DEBUG" hidden="Yes" Name="Debug" />
+  <configuration c_preprocessor_definitions="NDEBUG" gcc_optimization_level="Level 1" build_debug_information="No" hidden="Yes" Name="Release" />
+  <configuration c_preprocessor_definitions="__FLASH_BUILD" hidden="Yes" Name="Flash" />
+  <configuration c_preprocessor_definitions="__RAM_BUILD" hidden="Yes" Name="RAM" />
+  <configuration c_preprocessor_definitions="__ARM" arm_instruction_set="ARM" hidden="Yes" Name="ARM" />
+  <configuration c_preprocessor_definitions="__THUMB" arm_instruction_set="THUMB" hidden="Yes" Name="THUMB" />
+  <configuration c_enforce_ansi_checking="Yes" inherited_configurations="ARM;Flash;Debug" arm_instruction_set="THUMB" Name="ARM Flash Debug" />
+  <configuration inherited_configurations="ARM;Flash;Release" Name="ARM Flash Release" />
+  <configuration inherited_configurations="ARM;RAM;Debug" Name="ARM RAM Debug" />
+  <configuration inherited_configurations="ARM;RAM;Release" Name="ARM RAM Release" />
+  <configuration inherited_configurations="THUMB;Flash;Debug" Name="THUMB Flash Debug" />
+  <configuration inherited_configurations="THUMB;Flash;Release" Name="THUMB Flash Release" />
+  <configuration inherited_configurations="THUMB;RAM;Debug" Name="THUMB RAM Debug" />
+  <configuration inherited_configurations="THUMB;RAM;Release" Name="THUMB RAM Release" />
+</solution>

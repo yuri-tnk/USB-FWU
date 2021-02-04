@@ -1,0 +1,273 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\usbfwu.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\usbfwu.ico"
+IDI_ICON_ERR            ICON                    "res\\err_icon.ico"
+IDI_ICON_WARN           ICON                    "res\\warn_icon.ico"
+IDI_ICON_OK             ICON                    "res\\ok_icon.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_TN_USB_FW_UPGR_1_DIALOG DIALOGEX 0, 0, 301, 166
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "usbfwu"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,238,144,50,14
+    CONTROL         "",IDC_TAB1,"SysTabControl32",0x0,7,7,287,130
+    ICON            IDI_ICON_WARN,IDC_ICON_CONN,10,139,21,20
+    LTEXT           "Static",IDC_INFO_DEVCONN,39,146,172,8
+END
+
+IDD_DIALOG_READFW DIALOGEX 0, 0, 278, 128
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Start",IDC_BUTTON_START_READFW,228,7,50,14
+    PUSHBUTTON      "Stop",IDC_BUTTON_STOP_READFW,228,33,50,14
+    PUSHBUTTON      "...",IDC_BUTTON_FILE_READFW,201,21,16,12
+    COMBOBOX        IDC_COMBO_PLACEHOLDER_READFW,9,21,185,30,CBS_DROPDOWN | CBS_SORT | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Save to file:",IDC_STATIC,10,9,40,8
+    LTEXT           "Firmware Info",IDC_STATIC,21,46,46,8
+    LTEXT           "Status",IDC_STATIC,21,81,22,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,71,50,132,1
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,47,85,155,1
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,9,50,7,1
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,9,85,7,1
+    ICON            "",IDC_STATIC_STATUSICON_READFW,17,94,20,20
+    LTEXT           "",IDC_STATIC_STATUSTEXT_READFW,48,94,215,20
+    LTEXT           "Information is not avaliable.",IDC_STATIC_FW_INFO_READFW,11,62,259,8
+END
+
+IDD_DIALOG_WRITEFW DIALOGEX 0, 0, 278, 128
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Start",IDC_BUTTON_START_WRITEFW,228,7,50,14
+    PUSHBUTTON      "Stop",IDC_BUTTON_STOP_WRITEFW,228,33,50,14
+    PUSHBUTTON      "...",IDC_BUTTON_FILE_WRITEFW,201,21,16,12
+    COMBOBOX        IDC_COMBO_PLACEHOLDER_WRITEFW,9,21,185,30,CBS_DROPDOWN | CBS_SORT | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Firmware file:",IDC_STATIC,10,9,72,8
+    LTEXT           "Firmware Info",IDC_STATIC,21,46,46,8
+    LTEXT           "Status",IDC_STATIC,21,81,22,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,71,50,132,1
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,47,85,155,1
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,9,50,7,1
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,9,85,7,1
+    ICON            "",IDC_STATIC_STATUSICON_WRITEFW,17,94,20,20
+    LTEXT           "",IDC_STATIC_STATUSTEXT_WRITEFW,48,94,215,20
+    LTEXT           "Information is not avaliable.",IDC_STATIC_FW_INFO_WRITEFW,11,62,264,8
+END
+
+IDD_DIALOG_REGULAROP DIALOGEX 0, 0, 278, 128
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Start",IDC_BUTTON_START_REGOP,228,7,50,14
+    PUSHBUTTON      "Stop",IDC_BUTTON_STOP_REGOP,228,33,50,14
+    PUSHBUTTON      "...",IDC_BUTTON_FILE_REGOP,201,21,16,12
+    COMBOBOX        IDC_COMBO_PLACEHOLDER_REGOP,9,21,185,30,CBS_DROPDOWN | CBS_SORT | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Save to file:",IDC_STATIC,10,9,40,8
+    LTEXT           "Num Received Bytes:",IDC_STATIC,15,59,73,8
+    LTEXT           "Reception Rate (bytes/sec):",IDC_STATIC,15,86,94,8
+    LTEXT           "0",IDC_STATIC_NUM_RXBYTES_REGOP,115,59,102,10
+    LTEXT           "0",IDC_STATIC_RATE_REGOP,115,86,90,8
+END
+
+IDD_DIALOG_ABOUT DIALOGEX 0, 0, 280, 128
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         133,IDC_STATIC_ABOUTPIC,"Static",SS_BITMAP | SS_CENTERIMAGE | SS_REALSIZEIMAGE,0,6,280,30
+    CTEXT           "http://www.tnkernel.com",IDC_LABEL_WEB,82,96,115,8
+    CTEXT           "USB Firmware Upgrader Demo",IDC_STATIC,3,52,273,8
+    CTEXT           "(C)2006,2008 Yuri Tiomkin",IDC_STATIC,3,66,273,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Company name>"
+            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "usbfwu.exe"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "OriginalFilename", "usbfwu.exe"
+            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_TN_USB_FW_UPGR_1_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 294
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 159
+    END
+
+    IDD_DIALOG_READFW, DIALOG
+    BEGIN
+        RIGHTMARGIN, 277
+        BOTTOMMARGIN, 126
+    END
+
+    IDD_DIALOG_WRITEFW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        TOPMARGIN, 7
+    END
+
+    IDD_DIALOG_REGULAROP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        TOPMARGIN, 7
+    END
+
+    IDD_DIALOG_ABOUT, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 127
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "res\\about_bmp.bmp"
+IDB_BITMAP_RUN          BITMAP                  "res\\Firefox_run_256_2.bmp"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\usbfwu.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

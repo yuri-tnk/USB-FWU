@@ -1,0 +1,56 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+ cExt (*.c)
+ aExt (*.s*; *.src; *.a*)
+ oExt (*.obj)
+ lExt (*.lib)
+ tExt (*.txt; *.h; *.inc)
+ pExt (*.plm)
+ CppX (*.cpp)
+ DaveTm { 0,0,0,0,0,0,0,0 }
+
+Target (usb_app), 0x0004 // Tools: 'ARM-ADS'
+GRPOPT 1,(TNKernel_v21),0,0,0
+GRPOPT 2,(Test Files),0,0,0
+GRPOPT 3,(Sys),0,0,0
+
+OPTFFF 1,1,1,0,0,0,0,0,<..\..\TNKernel\tn_utils.c><tn_utils.c> 
+OPTFFF 1,2,1,0,0,0,0,0,<..\..\TNKernel\tn.c><tn.c> 
+OPTFFF 1,3,1,0,0,0,0,0,<..\..\TNKernel\tn_dqueue.c><tn_dqueue.c> 
+OPTFFF 1,4,1,0,0,0,0,0,<..\..\TNKernel\tn_event.c><tn_event.c> 
+OPTFFF 1,5,1,0,0,0,0,0,<..\..\TNKernel\tn_mem.c><tn_mem.c> 
+OPTFFF 1,6,1,0,0,0,0,0,<..\..\TNKernel\tn_mutex.c><tn_mutex.c> 
+OPTFFF 1,7,1,0,0,0,0,0,<..\..\TNKernel\tn_port.c><tn_port.c> 
+OPTFFF 1,8,1,0,0,0,0,0,<..\..\TNKernel\tn_sem.c><tn_sem.c> 
+OPTFFF 1,9,1,0,0,0,0,0,<..\..\TNKernel\tn_tasks.c><tn_tasks.c> 
+OPTFFF 1,10,2,0,0,0,0,0,<..\..\TNKernel\tn_port_asm_armcc.s><tn_port_asm_armcc.s> 
+OPTFFF 2,11,1,0,0,0,0,0,<..\usb_app\utils.c><utils.c> 
+OPTFFF 2,12,1,0,0,0,0,0,<..\usb_app\big_flash_size_imit.c><big_flash_size_imit.c> 
+OPTFFF 2,13,1,0,0,0,0,0,<..\usb_app\tn_usb_descr.c><tn_usb_descr.c> 
+OPTFFF 2,14,1,0,0,0,0,0,<..\usb_app\tn_usb_ep.c><tn_usb_ep.c> 
+OPTFFF 2,15,1,0,0,0,0,0,<..\usb_app\tn_usb_hw.c><tn_usb_hw.c> 
+OPTFFF 2,16,1,0,0,0,0,0,<..\usb_app\tn_usb_req.c><tn_usb_req.c> 
+OPTFFF 2,17,1,0,0,0,0,0,<..\usb_app\tn_user.c><tn_user.c> 
+OPTFFF 2,18,1,33554432,0,0,0,0,<..\usb_app\usb_app.c><usb_app.c> 
+OPTFFF 2,19,2,419430400,0,0,0,0,<..\usb_app\s_itoa_armcc.s><s_itoa_armcc.s> 
+OPTFFF 3,20,2,285212672,0,0,0,0,<.\tnkernel_startup_app_keil_rvc.s><tnkernel_startup_app_keil_rvc.s> 
+OPTFFF 3,21,2,0,0,0,0,0,<.\startup_hardware_init.s><startup_hardware_init.s> 
+
+
+TARGOPT 1, (usb_app)
+ ADSCLK=12000000
+  OPTTT 1,1,1,0
+  OPTHX 1,65535,0,0,0
+  OPTLX 79,66,8,<.\LST\>
+  OPTOX 16
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,0
+  OPTFL 1,0,1
+  OPTDL (SARM.DLL)(-cLPC2100)(DARMP.DLL)(-pLPC2146)(SARM.DLL)()(TARMP.DLL)(-pLPC2146)
+  OPTDBG 48125,0,()()()()()()()()()() (BIN\UL2ARM.DLL)()()()
+  OPTDF 0x0
+  OPTLE <>
+  OPTLC <>
+EndOpt
+

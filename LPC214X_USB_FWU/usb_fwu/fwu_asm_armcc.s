@@ -1,0 +1,166 @@
+;
+;   USB Firmware Upgrader
+;
+; Copyright © 2004,2006 Yuri Tiomkin
+; All rights reserved.
+;
+;
+; Permission to use, copy, modify, and distribute this software in source
+; and binary forms and its documentation for any purpose and without fee
+; is hereby granted, provided that the above copyright notice appear
+; in all copies and that both that copyright notice and this permission
+; notice appear in supporting documentation.
+;
+; THIS SOFTWARE IS PROVIDED BY THE YURI TIOMKIN AND CONTRIBUTORS "AS IS" AND
+; ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+; ARE DISCLAIMED. IN NO EVENT SHALL YURI TIOMKIN OR CONTRIBUTORS BE LIABLE
+; FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+; DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+; OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+; HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+; OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+; SUCH DAMAGE.
+
+
+
+;  ARM(c) assembler
+
+  AREA  fpu_asm,CODE,READONLY
+
+; External references
+
+  IMPORT cpu_irq_handler
+
+; Public functions declared in this file
+
+  EXPORT  cpu_irq_isr
+  EXPORT  cpu_fiq_isr
+  EXPORT  cpu_save_sr
+  EXPORT  cpu_restore_sr
+  EXPORT  iap_command
+
+; Constants
+
+NOINT  EQU      0xc0           ; Disable both IRQ & FIR
+
+;----------------------------------------------------------------------------
+;
+;----------------------------------------------------------------------------
+cpu_irq_isr
+
+   stmdb    sp!,{r0-r12,lr}
+   ldr      r0, =cpu_irq_handler
+   mov      lr,pc
+   bx       r0
+   ldmia    sp!,{r0-r12,lr}
+   subs     pc,lr,#4      ; SUBS with dest=pc restores flags
+
+
+;----------------------------------------------------------------------------
+;    Do nothing here
+;----------------------------------------------------------------------------
+cpu_fiq_isr
+
+        stmfd  SP!,{R0-R3,R12,LR}
+        ldmfd  SP!,{R0-R3,R12,LR}      ; restore registers of interrupted task's stack
+        subs   PC,LR,#4                ; return from FIQ
+
+;----------------------------------------------------------------------------
+;
+;----------------------------------------------------------------------------
+cpu_save_sr
+
+        mrs    r0,CPSR              ; Disable both IRQ & FIQ interrupts
+        orr    r1,r0,#NOINT
+        msr    CPSR_c,r1
+   ; Atmel add-on
+        mrs    r1,CPSR              ; Check CPSR for correct contents
+        and    r1,r1,#NOINT
+        cmp    r1,#NOINT
+        bne    cpu_save_sr          ; Not disabled - loop to try again
+
+        mov    pc,lr
+
+;----------------------------------------------------------------------------
+;
+;----------------------------------------------------------------------------
+cpu_restore_sr
+
+        msr    CPSR_c,r0
+        mov    pc,lr
+
+;----------------------------------------------------------------------------
+;
+;----------------------------------------------------------------------------
+
+; unsigned int iap_command(unsigned int cmd,
+;                          unsigned int p0,
+;                          unsigned int p1,
+;                          unsigned int p2,
+;                          unsigned int p3,
+;                          unsigned int *r0)
+; {
+;    static IAP iap_entry = (IAP)IAP_LOCATION;
+;    unsigned int command[5] = {cmd, p0, p1, p2, p3};
+;    unsigned int result[2];
+;
+; //   command[0] = cmd;
+; //   command[1] = p0;
+; //   command[2] = p1;
+; //   command[3] = p2;
+; //   command[4] = p3;
+;
+;    iap_entry(command, result);
+;
+;    if(r0)
+;      *r0 = result[1];
+;    return result[0];
+; }
+;
+
+
+
+iap_command
+
+	mov	r12, sp
+	stmfd	sp!, {r4, r11, r12, lr, pc}
+	sub	r11, r12, #4
+	sub	sp, sp, #28
+	str	r3, [r11, #-24]
+	ldr	r3, [r11, #4]
+	str	r0, [r11, #-36]
+	str	r1, [r11, #-32]
+	str	r3, [r11, #-20]
+	sub	r0, r11, #36
+	ldr	r3, label_1
+	str	r2, [r11, #-28]
+	sub	r1, r11, #44
+	ldr	r4, [r11, #8]
+	ldr	r12, [r3, #0]
+	mov	lr, pc
+	bx	r12
+
+	cmp	r4, #0
+	ldrne	r3, [r11, #-40]
+	strne	r3, [r4, #0]
+	ldr	r0, [r11, #-44]
+	sub	sp, r11, #16
+	ldmfd	sp, {r4, r11, sp, lr}
+	bx	lr
+
+iap_entry1
+	DCD	0x7FFFFFF1
+label_1
+	DCD	iap_entry1
+
+
+        END
+;----------------------------------------------------------------------------
+;----------------------------------------------------------------------------
+;----------------------------------------------------------------------------
+;----------------------------------------------------------------------------
+
+
+

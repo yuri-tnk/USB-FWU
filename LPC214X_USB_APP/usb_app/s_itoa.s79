@@ -1,0 +1,105 @@
+;
+;  Simple itoa() function
+;
+;
+;    IAR(c) ARM assembler
+;
+; Copyright © 2004,2006 Yuri Tiomkin
+; All rights reserved.
+;
+;Permission to use, copy, modify, and distribute this software in source
+;and binary forms and its documentation for any purpose and without fee
+;is hereby granted, provided that the above copyright notice appear
+;in all copies and that both that copyright notice and this permission
+;notice appear in supporting documentation.
+;
+;THIS SOFTWARE IS PROVIDED BY THE YURI TIOMKIN AND CONTRIBUTORS ``AS IS'' AND
+;ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;ARE DISCLAIMED. IN NO EVENT SHALL YURI TIOMKIN OR CONTRIBUTORS BE LIABLE
+;FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+;DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+;OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+;HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+;LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+;OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+;SUCH DAMAGE.
+
+
+
+
+;----------------------------------------------------------------------------
+;
+;----------------------------------------------------------------------------
+
+;     Simple itoa()
+; Assembler code for s_itoa(), that works properly
+; after GCC,ADS 1.2,RealView 2.2 and Keil + RVC 3.0 assembling,
+; does not works properly after IAR assembling. Case I has no time
+; to explore it, I used here accembler code,
+; strictly derived from IAR listing of C source of s_itoa()
+
+        RSEG CODE:CODE:NOROOT(2)
+        PUBLIC s_itoa
+        EXTERN ??div32_a
+        CODE32
+
+//      char * s_itoa(char * buffer, int i)
+//      {
+s_itoa:
+        STMDB       SP!,{LR}           ;; Push
+        MOV         R2,R1
+//       char * ptr;
+//
+//       ptr = buffer + 12;
+        ADD         R3,R0,#+0xC
+//       *ptr = 0;
+        MOV         R0,#+0x0
+        STRB        R0,[R3, #+0]
+//       do
+//       {
+//          ptr--;
+//          *ptr = (i % 10) + '0';
+??s_itoa_0:
+        MOV         R0,R2
+        MOV         R1,#+0xA
+        _BLF        ??div32_a,??rA??div32_a
+        ADD         R0,R0,#+0x30
+        STRB        R0,[R3, #-1]!
+//          i /= 10;
+        MOV         R0,R2
+        MOV         R1,#+0xA
+        _BLF        ??div32_a,??rA??div32_a
+        MOV         R2,R1
+//       }while( i > 0);
+        CMP         R1,#+0x1
+        BGE         ??s_itoa_0
+//       return ptr;
+        MOV         R0,R3
+        LDMIA       SP!,{PC}           ;; return
+//   }
+
+        RSEG CODE:CODE:NOROOT(2)
+        CODE32
+??rA??div32_a:
+        LDR         R12,??Subroutine0_0  ;; ??div32_a
+        MOV         PC,R12
+        DATA
+??Subroutine0_0:
+        DC32        ??div32_a
+
+        END
+
+;----------------------------------------------------------------------------
+;----------------------------------------------------------------------------
+;----------------------------------------------------------------------------
+;----------------------------------------------------------------------------
+;----------------------------------------------------------------------------
+;----------------------------------------------------------------------------
+
+
+
+
+
+
+
